@@ -1,2 +1,2 @@
-# DevOps Coursework - Feature Branch Update v2
+# DevOps Coursework - Main branch edit
 This repository contains my DevOps Lab assignments.
