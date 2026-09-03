@@ -1,0 +1,38 @@
+// Assignment 7: Pipeline with Parameters
+// Job: Declarative-Pipeline-Demo (updated via Configure > Pipeline script)
+
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'GREETING_NAME', defaultValue: 'World', description: 'The name to use in the greeting')
+    }
+
+    stages {
+        stage('Checkout Source Code') {
+            steps {
+                echo 'Starting Git checkout...'
+                git url: 'https://github.com/YHQZ1/Devops-Coursework.git', branch: 'main'
+                echo 'Git checkout completed.'
+            }
+        }
+
+        stage('Greeting') {
+            steps {
+                echo "Hello ${params.GREETING_NAME}"
+            }
+        }
+
+        stage('Run Example Command') {
+            steps {
+                echo 'Executing a shell command...'
+                sh 'echo "Hello from Declarative Pipeline!"'
+                sh 'echo --- Reading README ---'
+                sh 'cat README.md'
+            }
+        }
+    }
+}
+
+// Run via "Build with Parameters", setting GREETING_NAME (e.g. "Uttkarsh")
+// Console output confirms: Hello Uttkarsh
