@@ -1,0 +1,25 @@
+// Assignment 6: Basic Declarative Pipeline
+// Job: Declarative-Pipeline-Demo (Pipeline script, entered directly in Jenkins UI)
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout Source Code') {
+            steps {
+                echo 'Starting Git checkout...'
+                git url: 'https://github.com/YHQZ1/Devops-Coursework.git', branch: 'main'
+                echo 'Git checkout completed.'
+            }
+        }
+
+        stage('Run Example Command') {
+            steps {
+                echo 'Executing a shell command...'
+                sh 'echo "Hello from Declarative Pipeline!"'
+                sh 'echo --- Reading README ---'
+                sh 'cat README.md'
+            }
+        }
+    }
+}
